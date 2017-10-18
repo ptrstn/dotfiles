@@ -1,0 +1,2 @@
+#!/bin/sh
+'feh' '--bg-scale' '/home/spectre/Pictures/i3-wallpaper.png' 
