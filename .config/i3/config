@@ -196,3 +196,4 @@ gaps outer 10
 #smart_gaps on
 
 exec_always --no-startup-id killall polybar; polybar example &
+exec_always compton -f
