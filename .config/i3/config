@@ -127,7 +127,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+Shift+x exec i3lock -i ~/Pictures/i3-lock-wallpaper.png
 
 # launch music player
-bindsym $mod+Shift+m exec termite -e cmus
+bindsym $mod+Shift+m exec termite -e ncmpcpp
 
 # launch ranger
 bindsym $mod+Shift+n exec termite -e ranger
