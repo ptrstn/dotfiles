@@ -124,13 +124,19 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # lock i3
-bindsym $mod+Shift+x exec i3lock -i ~/Pictures/i3-lock-wallpaper.png
+bindsym 	$mod+Shift+x 	exec i3lock -i ~/Pictures/i3-lock-wallpaper.png
 
 # launch music player
-bindsym $mod+Shift+m exec termite -e ncmpcpp
+bindsym 	$mod+Shift+m 	exec termite -e ncmpcpp
 
 # launch ranger
-bindsym $mod+Shift+n exec termite -e ranger
+bindsym 	$mod+Shift+n 	exec termite -e ranger
+
+# launch chromium
+bindsym 	$mod+Shift+v 	exec chromium
+
+#launch qutebrowser
+bindsym 	$mod+Shift+b 	exec qutebrowser
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -165,36 +171,43 @@ bindsym $mod+r mode "resize"
 #        status_command i3status
 #}
 
-set $inc --no-startup-id amixer sset Master 2%+
-#set $biginc --no-startup-id amixer sset Master 5%+
-set $dec --no-startup-id amixer sset Master 2%-
-#set $bigdec --no-startup-id amixer sset Master 5%-
-set $mute --no-startup-id amixer sset Master toggle
+set 	$inc 			--no-startup-id 	amixer sset Master 2%+
+#set 	$biginc 		--no-startup-id 	amixer sset Master 5%+
+set 	$dec 			--no-startup-id 	amixer sset Master 2%-
+#set 	$bigdec 		--no-startup-id 	amixer sset Master 5%-
+set 	$mute 			--no-startup-id 	amixer sset Master toggle
 
 #cmus
-#set $pause --no-startup-id cmus-remote -u
-#set $next --no-startup-id cmus-remote -n
-#set $prev --no-startup-id cmus-remote -r
+#set 	$pause 			--no-startup-id 	cmus-remote -u
+#set 	$next 			--no-startup-id 	cmus-remote -n
+#set 	$prev 			--no-startup-id 	cmus-remote -r
 
 #ncmpcpp
-set $pause --no-startup-id mpc toggle
-set $next --no-startup-id mpc next
-set $prev --no-startup-id mpc prev
+set 	$pause 			--no-startup-id 	mpc toggle
+set 	$next 			--no-startup-id 	mpc next
+set 	$prev 			--no-startup-id 	mpc prev
+set 	$seekForwards 		--no-startup-id 	mpc seek +5
+set 	$seekBackwards 		--no-startup-id 	mpc seek -5
+set 	$playerInc 		--no-startup-id 	mpc volume +5
+set 	$playerDec 		--no-startup-id 	mpc volume -5
 
 bindsym XF86AudioNext		exec $next
 bindsym XF86AudioPlay		exec $pause
 bindsym XF86AudioPrev		exec $prev
 
+bindsym $mod++			exec $seekForwards
+bindsym $mod+-			exec $seekBackwards
+
 bindsym XF86AudioMute		exec $mute
 bindsym XF86AudioLowerVolume	exec $dec
 bindsym XF86AudioRaiseVolume	exec $inc
 
-bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 5
-bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown	exec --no-startup-id 	xbacklight -dec 5
+bindsym XF86MonBrightnessUp	exec --no-startup-id 	xbacklight -inc 5
 
-exec --no-startup-id nm-applet
-exec_always feh --bg-scale ~/Pictures/i3-wallpaper.png
-exec i3lock -i ~/Pictures/i3-lock-wallpaper.png
+exec 				--no-startup-id 	nm-applet
+exec_always 	feh 		--bg-scale 		~/Pictures/i3-wallpaper.png
+exec 		i3lock 		-i 			~/Pictures/i3-lock-wallpaper.png
 
 for_window [class="^.*"] border pixel 0
 gaps inner 10
