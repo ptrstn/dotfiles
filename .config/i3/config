@@ -171,9 +171,15 @@ set $dec --no-startup-id amixer sset Master 2%-
 #set $bigdec --no-startup-id amixer sset Master 5%-
 set $mute --no-startup-id amixer sset Master toggle
 
-set $pause --no-startup-id cmus-remote -u
-set $next --no-startup-id cmus-remote -n
-set $prev --no-startup-id cmus-remote -r
+#cmus
+#set $pause --no-startup-id cmus-remote -u
+#set $next --no-startup-id cmus-remote -n
+#set $prev --no-startup-id cmus-remote -r
+
+#ncmpcpp
+set $pause --no-startup-id mpc toggle
+set $next --no-startup-id mpc next
+set $prev --no-startup-id mpc prev
 
 bindsym XF86AudioNext		exec $next
 bindsym XF86AudioPlay		exec $pause

@@ -14,6 +14,9 @@
 !.config/cmus/rc
 !.config/i3/
 !.config/i3/*
+!.config/mpd/
+.config/mpd/*
+!.config/mpd/mpd.conf
 !.config/neofetch/
 !.config/neofetch/*
 !.config/polybar/
@@ -27,3 +30,6 @@
 !.config/termite/*
 !.config/chromium-flags.conf
 
+!.ncmpcpp/
+.ncmpcpp/*
+!.ncmpcpp/config
