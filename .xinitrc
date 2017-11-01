@@ -50,4 +50,5 @@ fi
 
 
 setxkbmap de &
+udiskie &
 exec i3

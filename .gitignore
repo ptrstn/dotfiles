@@ -12,6 +12,8 @@
 !.config/cmus/
 .config/cmus/*
 !.config/cmus/rc
+!.config/dunst/
+!.config/dunst/dunstrc
 !.config/i3/
 !.config/i3/*
 !.config/mpd/

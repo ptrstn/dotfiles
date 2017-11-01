@@ -47,7 +47,7 @@ font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = WunconSiji:pixelsize=10;1
 
-modules-left = i3
+modules-left = i3 mpd
 ;modules-center = mpd
 modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan battery temperature date powermenu
 
@@ -152,7 +152,8 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song> <label-time>
+#<icon-prev> <icon-stop> <toggle> <icon-next>
 
 icon-prev = 
 icon-stop = 
@@ -160,7 +161,8 @@ icon-play = 
 icon-pause = 
 icon-next = 
 
-label-song-maxlen = 25
+label-song = %artist% - %title%
+label-song-maxlen = 70
 label-song-ellipsis = true
 
 [module/xbacklight]
