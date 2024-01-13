@@ -1,5 +1,5 @@
 dotfiles_dir="$(pwd)"
-user_bin_dir="$HOME/bin"
+user_bin_dir="$HOME/.local/bin"
 
 echo
 info_message "Adding custom scripts..."

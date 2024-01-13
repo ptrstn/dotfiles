@@ -11,7 +11,7 @@ cd dotfiles
 
 ### Automatic Installation
 
-To automate the installation process, you can use the `setup.sh` script. This script will symbolically link the contents of the `bin` directory into your `~/bin`, copy the `.bash_aliases` file to your `~/.bash_aliases` and source it in your `~/.bashrc`. It safely skips the files that already exist.
+To automate the installation process, you can use the `setup.sh` script. This script will symbolically link the contents of the `bin` directory into your `~/.local/bin`, copy the `.bash_aliases` file to your `~/.bash_aliases` and source it in your `~/.bashrc`. It safely skips the files that already exist.
 
 ```bash
 chmod +x setup.sh
@@ -22,11 +22,11 @@ chmod +x setup.sh
 
 Alternatively, you can perform a manual installation by following these steps:
 
-1. Copy the contents of the `bin` directory into your `~/bin` directory (create it if it doesn't exist):
+1. Copy the contents of the `bin` directory into your `~/.local/bin` directory (create it if it doesn't exist):
 
    ```bash
-   mkdir -p ~/bin
-   cp -i bin/* ~/bin
+   mkdir -p ~/.local/bin
+   cp -i bin/* ~/.local/bin
    ```
 
 2. Copy the `.bash_aliases` file to your home directory:
