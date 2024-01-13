@@ -1,9 +1,9 @@
 #!/bin/bash
 
 echo "Setting up dotfiles..."
-source scripts/common_functions.sh
-source scripts/add_aliases.sh
-source scripts/link_custom_scripts_to_bin.sh
-source scripts/echo_skipped_files.sh
+source scripts/00_common_functions.sh
+source scripts/01_add_aliases.sh
+source scripts/02_link_custom_scripts_to_bin.sh
+source scripts/03_echo_skipped_files.sh
 echo
 echo "Setup completed."
