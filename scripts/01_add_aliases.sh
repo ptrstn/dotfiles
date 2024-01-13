@@ -1,6 +1,3 @@
-dotfiles_dir="$(pwd)"
-user_home_dir="$HOME"
-
 echo
 info_message "Adding aliases..."
 create_symbolic_link "$dotfiles_dir/.bash_aliases" "$HOME/.bash_aliases"
