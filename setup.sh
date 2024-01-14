@@ -30,7 +30,10 @@ done
 if [ -z "$user_bin_dir" ]; then
     user_bin_dir=$(echo $PATH | tr ':' '\n' | grep '^/home/.*/bin$')
 
-    if [ $(echo "$user_bin_dir" | wc -l) -ne 1 ]; then
+    if [ -z "$user_bin_dir" ]; then
+        echo "No matching bin path found in \$PATH."
+        exit 1
+    elif [ $(echo "$user_bin_dir" | wc -l) -ne 1 ]; then
         echo "Ambiguous bin path. Multiple matching paths found in \$PATH:"
         echo "$user_bin_dir"
         exit 1
