@@ -75,3 +75,12 @@ To format all the scripts, simply run:
 ```bash
 shfmt -l -w .
 ```
+
+### Static Analysis
+
+[ShellCheck](https://github.com/koalaman/shellcheck) is used for static code analysis.
+To check all the scripts, simply run:
+
+```bash
+shellcheck *.sh
+```
