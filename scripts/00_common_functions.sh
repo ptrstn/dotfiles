@@ -6,7 +6,7 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-skipped_files=()
+declare -a skipped_files
 
 success_message() {
 	echo -e "${GREEN}$1${NC}"

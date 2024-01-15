@@ -1,7 +1,6 @@
 # shellcheck disable=SC2148
 
-# Ensure skipped_files is set
-: "${skipped_files:?Error: skipped_files is not set.}"
+declare -a skipped_files
 
 # Print skipped files, if any
 if [ ${#skipped_files[@]} -gt 0 ]; then
