@@ -3,44 +3,29 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  build-ubuntu:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-
     - name: Install Requirements
       run: |
         sudo apt-get update
-        sudo apt-get install tree shellcheck -y
+        sudo apt-get install tree -y
+    - uses: ./.github/actions/setup-and-test
+      with:
+        bin-path: /usr/local/bin
 
-    - name: Run Setup
+  build-archlinux:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Requirements
       run: |
-        ./setup.sh -b /usr/local/bin
-
-    - name: Verify Script Linking
-      run: |
-        test -f ~/.bashrc
-        test -f ~/.bash_aliases
-        test -f /usr/local/bin/combine_files.sh
-
-    - name: Test combine_files.sh
-      run: |
-        ! test -f combined_files.sh
-        combine_files.sh sh
-        test -f combined_files.sh
-
-    - name: Test Aliases
-      run: |
-        source ~/.bash_aliases
-        shopt -s expand_aliases
-        
-        ! test -f combined_files.sh
-        compyne
-        test -f combined_files.py
-        
-        delete_pycache
-        ptree
+        pacman -Sy tree --noconfirm
+    - uses: ./.github/actions/setup-and-test
+      with:
+        bin-path: /usr/local/bin
 
   code-quality:
     runs-on: ubuntu-latest

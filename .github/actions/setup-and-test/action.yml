@@ -1,0 +1,37 @@
+name: 'Setup and Test Scripts'
+description: 'Run setup script and test scripts'
+inputs:
+  bin-path:
+    description: 'Binary installation path'
+    required: true
+    default: '/usr/local/bin'
+runs:
+  using: "composite"
+  steps:
+    - name: Run setup script
+      run: |
+        ./setup.sh -b ${{ inputs.bin-path }}
+
+    - name: Verify script linking
+      run: |
+        test -f ~/.bashrc
+        test -f ~/.bash_aliases
+        test -f ${{ inputs.bin-path }}/combine_files.sh
+
+    - name: Test combine_files.sh
+      run: |
+        ! test -f combined_files.sh
+        combine_files.sh sh
+        test -f combined_files.sh
+
+    - name: Test aliases and other commands
+      run: |
+        source ~/.bash_aliases
+        shopt -s expand_aliases
+
+        ! test -f combined_files.sh
+        compyne
+        test -f combined_files.py
+
+        delete_pycache
+        ptree
