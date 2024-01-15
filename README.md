@@ -66,3 +66,12 @@ If you're not sure, check your `$PATH` variable.
 ```bash
 echo $PATH | tr ':' '\n' | grep -E '^/home/.+/bin$'
 ```
+
+### Reformat Scripts
+
+[`shfmt`](https://github.com/mvdan/sh) is used to format the scripts inside this repository. 
+To format all the scripts, simply run:
+
+```bash
+shfmt -l -w .
+```
