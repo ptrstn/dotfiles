@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 echo
 info_message "Adding aliases..."
 create_symbolic_link "$dotfiles_dir/.bash_aliases" "$HOME/.bash_aliases"

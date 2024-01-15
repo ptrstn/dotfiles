@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # Function to display usage instructions
 usage() {
 	echo "Usage: $0 [-b <user_bin_dir>]"

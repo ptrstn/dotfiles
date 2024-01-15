@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 ORANGE='\033[0;33m'
 GREEN='\033[0;32m'
 RED='\033[0;31m'

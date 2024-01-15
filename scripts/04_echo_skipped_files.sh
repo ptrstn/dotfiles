@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # Print skipped files, if any
 if [ ${#skipped_files[@]} -gt 0 ]; then
 	echo
