@@ -18,7 +18,7 @@ file_extension="${1#.}"
 output_filename="combined_files.$file_extension"
 
 # Clear the output file if it already exists
->"$output_filename"
+: >"$output_filename"
 
 # Function to append file content to the output file
 append_file() {
