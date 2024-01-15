@@ -41,7 +41,7 @@ Alternatively, you can perform a manual installation by following these steps:
    cp -i .bash_aliases ~
    ```
 
-3. Add the following lines to the beginning of your `.bashrc` file to check if the `.bash_aliases` file exists and source it:
+3. Add the following lines at the beginning of your `.bashrc` file to check if the `.bash_aliases` file exists and to source it:
 
    ```bash
    if [ -f ~/.bash_aliases ]; then
@@ -85,4 +85,17 @@ To check all the scripts, simply run:
 
 ```bash
 shellcheck -x setup.sh ./scripts/*.sh ./bin/*.sh
+```
+
+### Run GitHub Actions workflows locally
+
+You can run GitHub Actions workflows locally on your own machine using a tool called [act](https://github.com/nektos/act).
+
+Act is a command-line tool that simulates the GitHub Actions runner environment on your local machine, 
+allowing you to test and debug your workflows locally before pushing changes to your repository.
+
+To trigger the entire workflow locally, simply run:
+
+```bash
+act
 ```
