@@ -12,8 +12,8 @@ cd dotfiles
 ### Automatic Installation
 
 To automate the installation process, you can use the `setup.sh` script. 
-This script will symbolically link the contents of the `bin` directory into your user-specific bin directory, 
-which is determined from your `PATH` variable.
+This script will symbolically link the contents of the `bin` directory into your 
+[user-specific bin directory](#user-specific-bin-path), which is determined from your `PATH` variable.
 It symbolically links the `.bash_aliases` file to your `~/.bash_aliases` and sources it in your `~/.bashrc`. 
 It also safely skips the files that already exist.
 
@@ -26,7 +26,7 @@ chmod +x setup.sh
 
 Alternatively, you can perform a manual installation by following these steps:
 
-1. Copy the contents of the `bin` directory into your user-specific bin directory (create it, if it doesn't exist):
+1. Copy the contents of the `bin` directory into your [user-specific bin directory](#user-specific-bin-path) (create it, if it doesn't exist):
 
    ```bash
    mkdir -p ~/.local/bin
