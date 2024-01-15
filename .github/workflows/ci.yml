@@ -1,0 +1,45 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Requirements
+      run: |
+        sudo apt-get update
+        sudo apt-get install tree shellcheck -y
+
+    - name: Run Setup
+      run: |
+        ! test -f ~/.bash_aliases
+        ./setup.sh -b /usr/local/bin
+        test -f ~/.bash_aliases
+
+    - name: Verify Script Linking
+      run: |
+        test -f ~/.bashrc
+        test -f ~/.bash_aliases
+        test -f /usr/local/bin/combine_files.sh
+
+    - name: Test combine_files.sh
+      run: |
+        ! test -f combined_files.sh
+        combine_files.sh sh
+        test -f combined_files.sh
+
+    - name: Test Aliases
+      run: |
+        source ~/.bash_aliases
+        shopt -s expand_aliases
+        compyne
+        test -f combined_files.py
+        delete_pycache
+        ptree
+
+    - name: Run ShellCheck
+      run: shellcheck -x setup.sh ./scripts/*.sh ./bin/*.sh
