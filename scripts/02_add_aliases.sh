@@ -2,6 +2,11 @@
 
 echo
 info_message "Adding aliases..."
+
+# Ensure dotfiles_dir and user_home_dir are set
+: "${dotfiles_dir:?Error: dotfiles_dir is not set.}"
+: "${user_home_dir:?Error: user_home_dir is not set.}"
+
 create_symbolic_link "$dotfiles_dir/.bash_aliases" "$HOME/.bash_aliases"
 
 # Check if .bash_aliases is sourced in .bashrc with "." (dot) or "source" command

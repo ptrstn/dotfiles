@@ -3,6 +3,10 @@
 echo
 info_message "Adding custom scripts..."
 
+# Ensure user_bin_dir and dotfiles_dir are set
+: "${user_bin_dir:?Error: user_bin_dir is not set.}"
+: "${dotfiles_dir:?Error: dotfiles_dir is not set.}"
+
 # Check if '~/bin' exists; create it, if not
 if [ ! -d "$user_bin_dir" ]; then
 	mkdir -p "$user_bin_dir"
