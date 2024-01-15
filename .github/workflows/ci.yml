@@ -16,9 +16,7 @@ jobs:
 
     - name: Run Setup
       run: |
-        ! test -f ~/.bash_aliases
         ./setup.sh -b /usr/local/bin
-        test -f ~/.bash_aliases
 
     - name: Verify Script Linking
       run: |
@@ -36,10 +34,32 @@ jobs:
       run: |
         source ~/.bash_aliases
         shopt -s expand_aliases
+        
+        ! test -f combined_files.sh
         compyne
         test -f combined_files.py
+        
         delete_pycache
         ptree
 
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install shellcheck -y
+        
+        curl -fsSL https://github.com/mvdan/sh/releases/download/v3.7.0/shfmt_v3.7.0_linux_amd64 -o shfmt
+        chmod +x shfmt
+        sudo mv shfmt /usr/local/bin/
+
     - name: Run ShellCheck
       run: shellcheck -x setup.sh ./scripts/*.sh ./bin/*.sh
+
+    - name: Check Code Formatting
+      run: shfmt -d -i 2 -ci .
