@@ -7,8 +7,8 @@ NC='\033[0m' # No Color
 
 # Check for the correct number of command-line arguments
 if [ $# -ne 1 ]; then
-	echo -e "${RED}Usage: $(basename "$0") <file_extension>${NC}"
-	exit 1
+  echo -e "${RED}Usage: $(basename "$0") <file_extension>${NC}"
+  exit 1
 fi
 
 # Extract file extension argument, remove leading dot if present
@@ -22,11 +22,11 @@ output_filename="combined_files.$file_extension"
 
 # Function to append file content to the output file
 append_file() {
-	{
-		echo "# $1"
-		cat "$1"
-		echo -e "\n"
-	} >>"$output_filename"
+  {
+    echo "# $1"
+    cat "$1"
+    echo -e "\n"
+  } >>"$output_filename"
 }
 
 # Export the function to be available in subshells

@@ -73,7 +73,7 @@ echo $PATH | tr ':' '\n' | grep -E '^/home/.+/bin$'
 To format all the scripts, simply run:
 
 ```bash
-shfmt -l -w .
+shfmt -l -i 2 -ci -w .
 ```
 
 ### Static Analysis
