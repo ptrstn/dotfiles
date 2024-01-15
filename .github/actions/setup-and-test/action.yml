@@ -11,18 +11,21 @@ runs:
     - name: Run setup script
       run: |
         ./setup.sh -b ${{ inputs.bin-path }}
+      shell: bash
 
     - name: Verify script linking
       run: |
         test -f ~/.bashrc
         test -f ~/.bash_aliases
         test -f ${{ inputs.bin-path }}/combine_files.sh
+      shell: bash
 
     - name: Test combine_files.sh
       run: |
         ! test -f combined_files.sh
         combine_files.sh sh
         test -f combined_files.sh
+      shell: bash
 
     - name: Test aliases and other commands
       run: |
@@ -35,3 +38,4 @@ runs:
 
         delete_pycache
         ptree
+      shell: bash
