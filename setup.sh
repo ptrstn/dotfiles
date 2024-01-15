@@ -43,7 +43,6 @@ if [ -z "$user_bin_dir" ]; then
     echo "Using bin directory found in \$PATH: $user_bin_dir"
 fi
 
-
 echo "Setting up dotfiles..."
 source scripts/00_common_functions.sh
 source scripts/01_add_aliases.sh
