@@ -82,5 +82,5 @@ shfmt -l -w .
 To check all the scripts, simply run:
 
 ```bash
-shellcheck *.sh
+find . -type f -name "*.sh" ! -path "*/.*/*"  -exec shellcheck {} \;
 ```
