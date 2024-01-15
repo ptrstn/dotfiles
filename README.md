@@ -1,3 +1,5 @@
+[![CI](https://github.com/ptrstn/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/ptrstn/dotfiles/actions/workflows/ci.yml)
+
 # Personal dotfiles
 
 These are my personal dotfiles consisting of a collection of aliases and custom scripts. 
