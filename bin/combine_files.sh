@@ -6,8 +6,8 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Check for the correct number of command-line arguments
-if [ $# -ne 1 ]; then
-  echo -e "${RED}Usage: $(basename "$0") <file_extension>${NC}"
+if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+  echo -e "${RED}Usage: $(basename "$0") <file_extension> [path]${NC}"
   exit 1
 fi
 
@@ -15,7 +15,13 @@ fi
 file_extension="${1#.}"
 
 # Output file
-output_filename="combined_files.$file_extension"
+if [ $# -eq 2 ]; then
+  # If a path is provided, use it to construct the output filename
+  path="$2"
+  output_filename="combined_files_in_${path//\//_}.$file_extension"
+else
+  output_filename="combined_files.$file_extension"
+fi
 
 # Clear the output file if it already exists
 : >"$output_filename"
@@ -34,6 +40,10 @@ export -f append_file
 export output_filename
 
 # Find and process files with the specified extension
-find . -type f -name "*.$file_extension" ! -path "*/.*/*" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
+if [ $# -eq 2 ]; then
+  find "$path" -type f -name "*.$file_extension" ! -path "*/.*/*" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
+else
+  find . -type f -name "*.$file_extension" ! -path "*/.*/*" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
+fi
 
 echo -e "${BLUE}Files with '$file_extension' extension have been combined into ${GREEN}'$output_filename'${NC}"
