@@ -2,26 +2,41 @@
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Check for the correct number of command-line arguments
-if [ $# -lt 1 ] || [ $# -gt 2 ]; then
-  echo -e "${RED}Usage: $(basename "$0") <file_extension> [path]${NC}"
+if [ $# -lt 1 ]; then
+  echo -e "${RED}Usage: $(basename "$0") <file_extension> [path] [--ignore pattern]${NC}"
   exit 1
 fi
 
 # Extract file extension argument, remove leading dot if present
 file_extension="${1#.}"
+shift
+
+# Initialize variables
+path="."
+ignore_pattern=""
+
+# Process additional arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --ignore)
+      ignore_pattern="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    *)
+      # Assume the only other argument is the path
+      path="$1"
+      shift # past argument
+      ;;
+  esac
+done
 
 # Output file
-if [ $# -eq 2 ]; then
-  # If a path is provided, use it to construct the output filename
-  path="$2"
-  output_filename="combined_files_in_${path//\//_}.$file_extension"
-else
-  output_filename="combined_files.$file_extension"
-fi
+output_filename="combined_files_in_${path//\//_}.$file_extension"
+[ "$path" = "." ] && output_filename="combined_files.$file_extension"
 
 # Clear the output file if it already exists
 : >"$output_filename"
@@ -39,11 +54,11 @@ append_file() {
 export -f append_file
 export output_filename
 
-# Find and process files with the specified extension
-if [ $# -eq 2 ]; then
-  find "$path" -type f -name "*.$file_extension" ! -path "*/.*/*" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
+# Construct and execute the find command
+if [ -n "$ignore_pattern" ]; then
+  find "$path" -type f -name "*.$file_extension" ! -path "*/.*/*" ! -path "$ignore_pattern" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
 else
-  find . -type f -name "*.$file_extension" ! -path "*/.*/*" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
+  find "$path" -type f -name "*.$file_extension" ! -path "*/.*/*" ! -name "$output_filename" -exec bash -c 'append_file "$0"' {} \;
 fi
 
-echo -e "${BLUE}Files with '$file_extension' extension have been combined into ${GREEN}'$output_filename'${NC}"
+echo -e "${GREEN}Files with '$file_extension' extension have been combined into '$output_filename'${NC}"
